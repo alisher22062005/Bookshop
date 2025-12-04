@@ -1,5 +1,5 @@
 import Header from "../../shared/Header";
-import Filter from "./components/Filter/FIlter";
+// import Filter from "./components/Filter/FIlter";
 import HeroSection from "./components/HeroSection/HeroSection";
 
 export default function Home() {
@@ -7,7 +7,7 @@ export default function Home() {
     <>
       <Header />
       <HeroSection />
-      <Filter />
+      {/* <Filter /> */}
     </>
   );
 }

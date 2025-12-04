@@ -1,3 +1,4 @@
+import defaultImage from "../assets/channels4_profile.jpg";
 export default function BookCard({
   title,
   describe,
@@ -11,11 +12,11 @@ export default function BookCard({
 }) {
   return (
     <>
-      <div className="card bg-base-100 w-96 shadow-sm rounded-t-[1rem] ">
+      <div className="card bg-base-100 w-96 shadow-sm rounded-t-[1rem] h-[400px] ">
         <figure className="h-[250px]">
           <img
             className="rounded-t-[1rem] object-fill w-full h-full"
-            src={image}
+            src={image || defaultImage}
             alt="Shoes"
           />
         </figure>

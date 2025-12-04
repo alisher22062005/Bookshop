@@ -1,11 +1,11 @@
-import { Book } from "lucide-react";
+import { BookOpen } from "lucide-react";
 export default function Header() {
   return (
     <>
       <div className="flex justify-between p-[1%] border-b-[1px] border-gray-300 bg-white">
         <div className="flex gap-[0.5rem] pl-[3rem] items-center  ">
           <div>
-            <Book color="blue" size={30} />
+            <BookOpen color="blue" size={30} />
           </div>
           <div className="text-[1.5rem]">BookStore</div>
         </div>
