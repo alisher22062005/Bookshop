@@ -5,6 +5,8 @@ import { Link } from "react-router-dom";
 import type { Book } from "../../../../interfaces/Interfaces";
 import apiService from "../../../../service/apiService/apiService";
 import NotFoundBook from "../NotFoundBook/NotFoundBook";
+import { auth } from "../../../../firebase/firebase";
+import { onAuthStateChanged } from "firebase/auth";
 
 export default function Filter({ foundBooks }: { foundBooks: Book[] }) {
   const [books, setBooks] = useState<Book[]>([]);
@@ -12,6 +14,24 @@ export default function Filter({ foundBooks }: { foundBooks: Book[] }) {
   const genres = ["Science", "Romance", "Mystery", "Fantasy", "History"];
   const [found, setFound] = useState<boolean | null>(null);
   const [search, setSearch] = useState(false);
+  const [favourites, setFavourites] = useState<Book[]>([]);
+
+  useEffect(() => {
+    if (favourites?.length > 0)
+      localStorage.setItem("books", JSON.stringify(favourites));
+  }, []);
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user)
+        localStorage.setItem(user.email || "", JSON.stringify(favourites));
+    });
+    return unsubscribe;
+  }, []);
+
+  useEffect(() => {
+    if (favourites?.length > 0)
+      localStorage.setItem("books", JSON.stringify(favourites));
+  }, []);
 
   useEffect(() => {
     console.log("FOUND_BOOKS", foundBooks);

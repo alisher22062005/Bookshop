@@ -1,15 +1,30 @@
+import { Heart } from "lucide-react";
 import defaultImage from "../assets/channels4_profile.jpg";
+import { useEffect, useState } from "react";
 export default function BookCard({
   title,
   describe,
   author,
   image,
-}: {
+}: // isAdd,
+{
   title: string;
   describe: string;
   author: string;
   image: string;
+  // isAdd: boolean;
 }) {
+  const [isAdd, setIsAdd] = useState(false);
+  useEffect(() => {
+    const favourites = JSON.parse(localStorage?.getItem("books") || "[]");
+    if (favourites.length > 0) {
+      const check: boolean = favourites.find(
+        (item: any) => item.title == title
+      );
+      check ? setIsAdd(true) : "";
+    }
+  }, []);
+
   return (
     <>
       <div className="card bg-base-100 w-96 shadow-sm rounded-t-[1rem] h-[400px] ">
@@ -28,9 +43,6 @@ export default function BookCard({
             {author}
           </div>
           <p className="line-clamp-2">{describe}</p>
-          <div className="card-actions justify-end">
-            <button className="btn btn-primary">See</button>
-          </div>
         </div>
       </div>
     </>
